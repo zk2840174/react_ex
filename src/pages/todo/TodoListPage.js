@@ -15,7 +15,7 @@ function TodoListPage(props) {
     return (
         <SampleLayout>
             <Grid container sx={{pt:8}}>
-                <Grid xs={12}>
+                <Grid >
                     <Typography variant={'h4'}>Todo List Page</Typography>
                     <Typography variant={'h5'}>Page {page}</Typography>
                     <Typography variant={'h5'}>Size {size}</Typography>
