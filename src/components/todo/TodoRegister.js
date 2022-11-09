@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {Box, Button, Paper, TextField, Typography} from "@mui/material";
+import {postTodo} from "../../apis/todoApi";
 
 
 const initState = {
@@ -15,6 +16,16 @@ function TodoRegister(props) {
         todo[e.target.name] = e.target.value
         console.log("todo: ", todo)
         setTodo({...todo})
+    }
+
+    const handleReset = () => {
+        setTodo({...initState})
+    }
+
+    const clickRegister = () => {
+        postTodo(todo).then(result => {
+            console.log("SEND POST RESULT " , result)
+        })
     }
 
     return (
@@ -39,7 +50,8 @@ function TodoRegister(props) {
                 ></TextField>
 
                 <Box sx={{p:1}} justifyContent={'right'} display={'flex'}>
-                    <Button variant={'contained'}>REGISTER</Button>
+                    <Button variant={'contained'} onClick={clickRegister}>REGISTER</Button>
+                    <Button variant={'contained'} onClick={handleReset}>RESET</Button>
                 </Box>
             </Paper>
         </Box>
