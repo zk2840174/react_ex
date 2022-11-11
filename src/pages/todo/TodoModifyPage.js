@@ -1,24 +1,24 @@
 import React from 'react';
 import SampleLayout from "../../layouts/SampleLayout";
-import {Grid, Typography} from "@mui/material";
-import {useParams} from "react-router-dom";
-import TodoRead from "../../components/todo/TodoRead";
+import {Grid} from "@mui/material";
 
-function TodoReadPage(props) {
+import {useParams} from "react-router-dom";
+import TodoModify from "../../components/todo/TodoModify";
+
+function TodoModifyPage(props) {
 
     const {id} = useParams()
-
 
 
     return (
         <SampleLayout>
             <Grid container sx={{pt:8}}>
                 <Grid item xs={12} >
-                    <TodoRead id={id}></TodoRead>
+                    <TodoModify id={id}></TodoModify>
                 </Grid>
             </Grid>
         </SampleLayout>
     );
 }
 
-export default TodoReadPage;
+export default TodoModifyPage;
