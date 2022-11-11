@@ -1,44 +1,12 @@
-import React, {useEffect, useState} from 'react';
-import {deleteTodo, getTodo, putTodo} from "../../apis/todoApi";
+import React from 'react';
 import {Box, Button, Paper, TextField, Typography} from "@mui/material";
-import {Link, useNavigate} from "react-router-dom";
+import {Link} from "react-router-dom";
+import useModifyTodo from "../../hooks/useModifyTodo";
 
-
-const initState = {
-    id:0,
-    title:'',
-    writer:''
-}
 
 function TodoModify({id}) {
 
-    const [todo, setTodo] = useState(initState)
-
-    const navigate = useNavigate()
-
-    useEffect(() => {
-
-        getTodo(id).then(result => setTodo(result))
-
-    },[id])
-
-    const handleChange = (e) => {
-
-        todo[e.target.name] = e.target.value
-
-        setTodo({...todo})
-    }
-
-    const clickModify = () => {
-
-        putTodo(todo).then(() => navigate(`/todo/read/${todo.id}`) )
-    }
-
-    const clickDelete = () => {
-
-        deleteTodo(todo.id).then(() => navigate(`/todo/list`) )
-
-    }
+    const {todo,handleChange,clickModify, clickDelete} = useModifyTodo(id)
 
 
     return (

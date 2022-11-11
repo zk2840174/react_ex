@@ -1,32 +1,14 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Box, Button, Paper, TextField, Typography} from "@mui/material";
-import {postTodo} from "../../apis/todoApi";
+
+import useRegisterTodo from "../../hooks/useRegisterTodo";
 
 
-const initState = {
-    title:'',
-    writer: ''
-}
 
-function TodoRegister(props) {
 
-    const [todo, setTodo] = useState({...initState}) //상태 추가
+function TodoRegister() {
 
-    const handleChange = (e) => {
-        todo[e.target.name] = e.target.value
-        console.log("todo: ", todo)
-        setTodo({...todo})
-    }
-
-    const handleReset = () => {
-        setTodo({...initState})
-    }
-
-    const clickRegister = () => {
-        postTodo(todo).then(result => {
-            console.log("SEND POST RESULT " , result)
-        })
-    }
+    const  {todo,clickRegister,handleChange,handleReset} = useRegisterTodo()
 
     return (
         <Box sx={{p: 2,gap: 2}}>

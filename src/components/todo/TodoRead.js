@@ -1,24 +1,13 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {Box, Button, Paper, TextField, Typography} from "@mui/material";
-import {getTodo} from "../../apis/todoApi";
+
 import {Link} from "react-router-dom";
+import useGetTodo from "../../hooks/useGetTodo";
 
-
-const initState = {
-    id:0,
-    title:'',
-    writer:''
-}
 
 function TodoRead({id}) {
 
-    const [todo, setTodo] = useState(initState)
-
-    useEffect(() => {
-
-        getTodo(id).then(result => setTodo(result))
-
-    },[id])
+    const [todo] = useGetTodo(id)
 
 
     return (
