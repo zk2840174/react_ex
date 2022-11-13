@@ -60,7 +60,7 @@ function TodoModify({todo}) {
 
                 <Box sx={{p:1}} justifyContent={'right'} display={'flex'}>
                     <Button variant={'contained'}><Link to={`/todo/modify/${modTodo.id}`}>DELETE</Link></Button>
-                    <Button variant={'contained'}><Link to={`/todo/modify/${modTodo.id}`}>MODIFY</Link></Button>
+                    <Button variant={'contained'} onClick={clickModify}>MODIFY</Button>
                     <Button variant={'contained'}><Link to={`/todo/list`}>List</Link></Button>
                 </Box>
             </Paper>
