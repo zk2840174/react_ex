@@ -1,14 +1,12 @@
 import React from 'react';
 import {Box, Button, Paper, TextField, Typography} from "@mui/material";
-
 import {Link} from "react-router-dom";
-import useGetTodo from "../../hooks/useGetTodo";
 
+function TodoRead({todo}) {
 
-function TodoRead({id}) {
-
-    const [todo] = useGetTodo(id)
-
+    if(!todo) {
+        return <></>
+    }
 
     return (
         <Box sx={{p: 2,gap: 2}}>
@@ -16,22 +14,29 @@ function TodoRead({id}) {
                 <Typography variant={'h4'} sx={{p:3}}>Todo Read </Typography>
 
                 <TextField fullWidth
-                           variant="outlined"
+                           variant="filled"
+                           name="id"
+                           value = {todo.id}
+                           label="Writer"
+                ></TextField>
+
+                <TextField fullWidth
+                           variant="filled"
                            name="title"
                            value={todo.title}
                            label="Title"
                 ></TextField>
 
                 <TextField fullWidth
-                           variant="outlined"
+                           variant="filled"
                            name="writer"
                            value = {todo.writer}
                            label="Writer"
                 ></TextField>
 
                 <Box sx={{p:1}} justifyContent={'right'} display={'flex'}>
-                    <Button variant={'contained'}><Link to={`/todo/modify/${id}`}>MODIFY</Link></Button>
-                    <Button variant={'contained'}>RESET</Button>
+                    <Button variant={'contained'}><Link to={`/todo/modify/${todo.id}`}>MODIFY</Link></Button>
+                    <Button variant={'contained'}><Link to={`/todo/list`}>List</Link></Button>
                 </Box>
             </Paper>
         </Box>
