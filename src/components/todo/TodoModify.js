@@ -1,15 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import {Box, Button, Paper, TextField, Typography} from "@mui/material";
 import {Link, useNavigate} from "react-router-dom";
-import {putTodo} from "../../apis/todoApi";
+import {deleteTodo, putTodo} from "../../apis/todoApi";
 
-function TodoModify({todo}) {
-
-    console.log("-------------------", todo)
-
-    const [modTodo, setModTodo] = useState(null)
+function TodoModify({todo,changeRefresh}) {
 
     const navigate = useNavigate()
+
+    const [modTodo, setModTodo] = useState(null)
 
     useEffect(() => {
         setModTodo(todo)
@@ -19,15 +17,28 @@ function TodoModify({todo}) {
         return <></>
     }
 
+
     const handleChange = (e) => {
+
         modTodo[e.target.name] = e.target.value
+
         setModTodo({...modTodo})
     }
 
     const clickModify = () => {
+
         putTodo(modTodo).then(result => {
-            navigate(`/todo/list`, {state: {from:'modified'}})
+            changeRefresh()
+            navigate(`/todo/read/${modTodo.id}`, {state: {from:'modified'}})
         })
+    }
+
+    const clickDelete = () => {
+
+        deleteTodo(modTodo.id).then(result => {
+            navigate(`/todo/list`, {state: {from:'deleted'}})
+        })
+
     }
 
     return (
@@ -59,7 +70,7 @@ function TodoModify({todo}) {
                 ></TextField>
 
                 <Box sx={{p:1}} justifyContent={'right'} display={'flex'}>
-                    <Button variant={'contained'}><Link to={`/todo/modify/${modTodo.id}`}>DELETE</Link></Button>
+                    <Button variant={'contained'} onClick={clickDelete}>DELETE</Button>
                     <Button variant={'contained'} onClick={clickModify}>MODIFY</Button>
                     <Button variant={'contained'}><Link to={`/todo/list`}>List</Link></Button>
                 </Box>

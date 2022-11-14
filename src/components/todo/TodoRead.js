@@ -1,6 +1,7 @@
 import React from 'react';
 import {Box, Button, Paper, TextField, Typography} from "@mui/material";
 import {Link} from "react-router-dom";
+import CustomModal from "../util/CustomModal";
 
 function TodoRead({todo}) {
 
@@ -39,6 +40,8 @@ function TodoRead({todo}) {
                     <Button variant={'contained'}><Link to={`/todo/list`}>List</Link></Button>
                 </Box>
             </Paper>
+
+            <CustomModal></CustomModal>
         </Box>
     );
 }

@@ -13,13 +13,19 @@ function TodoReadPage(props) {
 
     const [todo, setTodo] = useState(null)
 
+    const [refresh, setRefrech] = useState(false)
+
+    const changeRefresh = () => {
+        setRefrech(!refresh)
+    }
+
     useEffect(() => {
 
         getTodo(id).then(data => {
             setTodo(data)
         })
 
-    },[id])
+    },[id, refresh])
 
 
     const getComponent = ()  =>{
@@ -27,7 +33,7 @@ function TodoReadPage(props) {
         if(cmd === 'read'){
             return <TodoRead todo={todo}></TodoRead>
         }else if(cmd ==='modify'){
-            return <TodoModify todo={todo}></TodoModify>
+            return <TodoModify todo={todo} changeRefresh={changeRefresh}></TodoModify>
         }
         return <></>
     }

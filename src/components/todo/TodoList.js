@@ -11,6 +11,7 @@ import {
     Typography
 } from "@mui/material";
 import {Link} from "react-router-dom";
+import CustomModal from "../util/CustomModal";
 
 
 function TodoList({todos}) {
@@ -50,6 +51,8 @@ function TodoList({todos}) {
                     </Table>
                 </TableContainer>
             </Paper>
+
+            <CustomModal></CustomModal>
         </Box>
     );
 }

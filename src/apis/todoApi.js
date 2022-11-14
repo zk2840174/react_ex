@@ -31,7 +31,7 @@ export const putTodo = async (todo) => {
 
 export const deleteTodo = async (id) => {
 
-    const res = await  axios.put(`http://localhost/todos/${id}`)
+    const res = await  axios.delete(`http://localhost/todos/${id}`)
 
     return res.data
 }
